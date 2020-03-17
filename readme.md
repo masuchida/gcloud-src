@@ -17,3 +17,7 @@ LoggingからPub/Subにエクスポートする。
 CloudfunctionsにてPub/Subを随時確認しており、Pub/Sub内にログがあった場合に
 
 Cloudfunctionsはそれを受け取り、Chatworkへ通知を飛ばす。
+
+今週中に全部終わらす！！
+
+今日中にChatworkに飛ぶ機構は作りたい！！

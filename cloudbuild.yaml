@@ -1,0 +1,20 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'beta',
+      'functions',
+      'deploy',
+      '${_TARGET_CLOUD_FUNCTIONS}',
+      '--source',
+      'https://source.developers.google.com/projects/$PROJECT_ID/repos/$REPO_NAME/moveable-aliases/$BRANCH_NAME',
+      '--runtime',
+      'python37',
+      '--region',
+      'us-west1',
+      '--entry-point',
+      'main_handler',
+      '--trigger-resource',
+      'cloud-builds',
+      '--trigger-event',
+      'google.pubsub.topic.publish',
+    ]
