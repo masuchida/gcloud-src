@@ -14,7 +14,7 @@ steps:
       '--entry-point',
       'hello_pubsub',
       '--trigger-resource',
-      'cloud-builds',
+      'projects/$PROJECT_ID/topics/${_TARGET_PUBSUB}',
       '--trigger-event',
       'google.pubsub.topic.publish',
     ]
