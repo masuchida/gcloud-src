@@ -11,13 +11,17 @@ def hello_pubsub(event, context):
 
     message = pubsub_message
     mes = """
-    TimeStamp: %s
-    InstanceEvent: %s
-    ResourceName: %s
+    Title: %s
+    発生時刻: %s
+    発生した事項: %s
+    リソース名: %s
+    詳細: %s
     """ % (
+        '死活監視　通知',
         message['receiveTimestamp'],
         message['jsonPayload']['event_subtype'],
-        message['jsonPayload']['resource']['name']
+        message['jsonPayload']['resource']['name'],
+        message['logName']
     )
 
     print(mes)
