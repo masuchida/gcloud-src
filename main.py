@@ -10,6 +10,14 @@ def hello_pubsub(event, context):
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
     message = pubsub_message
-    mes = message['receiveTimestamp']
+    mes = """
+    TimeStamp: %s
+    InstanceEvent: %s
+    ResourceName: %s
+    """ % (
+        message['receiveTimestamp'],
+        message['jsonPayload']['event_subtype'],
+        message['jsonPayload']['resource']['name']
+    )
 
     print(mes)
