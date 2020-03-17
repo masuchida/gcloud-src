@@ -7,6 +7,4 @@ def hello_pubsub(event, context):
          context (google.cloud.functions.Context): Metadata for the event.
     """
     pubsub_message = base64.b64decode(event['data']).decode('utf-8')
-
-    message = pubsub_message[u'receiveTimestamp']
-    print(message)
+    print(pubsub_message)
