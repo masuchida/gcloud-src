@@ -13,8 +13,8 @@ steps:
       'asia-northeast1',
       '--entry-point',
       'hello_pubsub',
-      '--trigger-resource',
-      'projects/$PROJECT_ID/topics/${_TARGET_PUBSUB}',
-      '--trigger-event',
-      'google.pubsub.topic.publish',
+      '--trigger-topic',
+      '${_TARGET_PUBSUB}',
+#      '--trigger-event',
+#      'google.pubsub.topic.publish',
     ]
