@@ -10,6 +10,6 @@ def hello_pubsub(event, context):
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
     message = pubsub_message
-    mes = message['insertId']
+    mes = message['receiveTimestamp']
 
     print(mes)
