@@ -7,9 +7,9 @@ def hello_pubsub(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
-    pubsub_message = base64.b64decode(event['data']).decode('utf-8')
+    pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
-    message = json.parse(pubsub_message).encode('utf-8')
+    message = pubsub_message
     mes = message['insertId']
 
     print(mes)
