@@ -1,4 +1,5 @@
 import base64
+import json
 
 def hello_pubsub(event, context):
     """Triggered from a message on a Cloud Pub/Sub topic.
@@ -8,6 +9,7 @@ def hello_pubsub(event, context):
     """
     pubsub_message = base64.b64decode(event['data']).decode('utf-8')
 
-    message = pubsub_message['insertId']
+    message = json.parse(pubsub_message).encode('utf-8')
+    mes = message['insertId']
 
-    print(message)
+    print(mes)
