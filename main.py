@@ -48,8 +48,10 @@ def hello_pubsub(event, context):
 
     print(mes)
 
+    data = mes.encode()
+
     headers = {
         'X-ChatWorkToken': TOKEN,
     }
 
-    requests.post(POST, headers=headers, data=mes)
+    requests.post(POST, headers=headers, data=data)
