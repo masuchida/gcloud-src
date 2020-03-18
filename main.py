@@ -31,4 +31,4 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    print(json.dumps(message))
+    print(json.dumps(message).encode('utf-8'))
