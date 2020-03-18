@@ -9,6 +9,26 @@ def hello_pubsub(event, context):
     """
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
-    message = pubsub_message['incident']['state']
+    incidentFlag = pubsub_message['incident']['state']
+    message = pubsub_message['incident']
+
+    if incidentFlag == 'open':
+        title = '障害発生'
+    elif incidentFlag == 'closed':
+        title = '回復'
+
+    message = """
+        Title: % s
+        発生時刻: % s
+        発生した事項: % s
+        リソース名: % s
+        URL: % s
+        """ % (
+            title,
+            message['started_at'],
+            message['summary'],
+            message['resource_display_name'],
+            message['url']
+        )
 
     print(json.dumps(message))
