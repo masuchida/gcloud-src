@@ -14,7 +14,7 @@ def send_chatwork(mes):
         'X-ChatWorkToken': TOKEN,
     }
 
-    requests.post(POST, headers=headers, data=mes)
+    requests.post(POST, headers=headers, data=mes.encode('utf-8'))
 
 def hello_pubsub(event, context):
     """Triggered from a message on a Cloud Pub/Sub topic.
