@@ -33,8 +33,8 @@ def hello_pubsub(event, context):
         Title: % s
         発生時刻: % s
         発生した事項: % s
-        リソース名: % s
-        URL: % s
+        対象リソース名: % s
+        エラー詳細URL: % s
         """ % (
             title,
             datetime,
