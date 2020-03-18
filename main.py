@@ -13,11 +13,8 @@ def send_chatwork(mes):
     headers = {
         'X-ChatWorkToken': TOKEN,
     }
-    data = {
-        mes
-    }
 
-    requests.post('https://api.chatwork.com/v2/rooms/$ROOMID/messages', headers=headers, data=data)
+    requests.post('https://api.chatwork.com/v2/rooms/$ROOMID/messages', headers=headers, data=mes)
 
 def hello_pubsub(event, context):
     """Triggered from a message on a Cloud Pub/Sub topic.
