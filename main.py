@@ -49,7 +49,7 @@ def hello_pubsub(event, context):
     post_mes = json.dumps(mes.encode('utf-8'))
 
     data = {
-        'text': post_mes
+        'body': post_mes
     }
 
     headers = {
