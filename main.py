@@ -1,11 +1,23 @@
 import base64
 import json
 import _datetime
+import requests
+import os
 
-TOKEN = ('CW_TOKEN')
-ROOMID = ('CW_ROOMID')
-URL = 'https://api.chatwork.com/v2'
+TOKEN = os.environ.get('CW_TOKEN')
+ROOMID = os.environ.get('CW_ROOMID')
+URL = 'https://api.chatwork.com/v2/rooms'
 POST = '{0}/{1}/messages'.format(URL, ROOMID)
+
+def send_chatwork(mes):
+    headers = {
+        'X-ChatWorkToken': TOKEN,
+    }
+    data = {
+        mes
+    }
+
+    requests.post('https://api.chatwork.com/v2/rooms/$ROOMID/messages', headers=headers, data=data)
 
 def hello_pubsub(event, context):
     """Triggered from a message on a Cloud Pub/Sub topic.
@@ -16,7 +28,7 @@ def hello_pubsub(event, context):
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
     message = pubsub_message['incident']
-    incidentFlag = message['state']
+    incident_flag = message['state']
     datetime = _datetime.datetime.fromtimestamp(message['started_at'])
     summary = message['summary']
 
@@ -25,27 +37,23 @@ def hello_pubsub(event, context):
     elif summary == 'The uptime check for gcp-test-271312 gcp-test has returned to a normal state.':
         summary = 'サーバー回復を確認しました。'
 
-    if incidentFlag == 'open':
-        title = '障害発生'
-    elif incidentFlag == 'closed':
-        title = '回復'
+    if incident_flag == 'open':
+        incident_flag = '障害発生'
+    elif incident_flag == 'closed':
+        incident_flag = '回復'
 
     mes = """
-        Title: % s
+        検知: % s
         発生時刻: % s
         発生した事項: % s
         対象リソース名: % s
         エラー詳細URL: % s
         """ % (
-            title,
+            incident_flag,
             datetime,
             summary,
             message['resource_display_name'],
             message['url']
         )
 
-    https = 'https://'
-    co = 'co.jp'
-    url = '{0}www.google.{1}/'.format(https, co)
-
-    print(url)
+    print(mes)
