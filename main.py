@@ -3,7 +3,6 @@ import json
 import _datetime
 import requests
 import os
-import timedelta
 
 TOKEN = os.environ.get('CW_TOKEN')
 ROOMID = os.environ.get('CW_ROOMID')
