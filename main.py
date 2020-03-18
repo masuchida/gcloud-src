@@ -9,13 +9,6 @@ ROOMID = os.environ.get('CW_ROOMID')
 URL = 'https://api.chatwork.com/v2/rooms'
 POST = '{0}/{1}/messages'.format(URL, ROOMID)
 
-def send_chatwork(mes):
-    headers = {
-        'X-ChatWorkToken': TOKEN,
-    }
-
-    requests.post(POST, headers=headers, data=mes.encode('utf-8'))
-
 def hello_pubsub(event, context):
     """Triggered from a message on a Cloud Pub/Sub topic.
     Args:
@@ -53,5 +46,10 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    send_chatwork(mes)
     print(mes)
+
+    headers = {
+        'X-ChatWorkToken': TOKEN,
+    }
+
+    requests.post(POST, headers=headers, data=mes)
