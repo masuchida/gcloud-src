@@ -22,7 +22,6 @@ def hello_pubsub(event, context):
     message = pubsub_message['incident']
     incident_flag = message['state']
     start_date = datetime.fromtimestamp(message['started_at'])
-    end_date = datetime.fromtimestamp(message['ended_at'])
     summary = message['summary']
 
     if summary == 'An uptime check on gcp-test-271312 gcp-test is failing.':
@@ -35,6 +34,7 @@ def hello_pubsub(event, context):
         jst = start_date.astimezone(timezone('Asia/Tokyo'))
     elif incident_flag == 'closed':
         incident_flag = '回復'
+        end_date = datetime.fromtimestamp(message['ended_at'])
         jst = end_date.astimezone(timezone('Asia/Tokyo'))
 
     mes = """
