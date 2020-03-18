@@ -4,7 +4,8 @@ import _datetime
 
 TOKEN = ('CW_TOKEN')
 ROOMID = ('CW_ROOMID')
-URL = 'https://api.chatwork.com/v2/'
+URL = 'https://api.chatwork.com/v2'
+POST = '{0}/{1}/messages'.format(URL, ROOMID)
 
 def hello_pubsub(event, context):
     """Triggered from a message on a Cloud Pub/Sub topic.
@@ -43,4 +44,8 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    print(mes)
+    https = 'https://'
+    co = 'co.jp'
+    url = '{0}www.google.{1}/'.format(https, co)
+
+    print(url)
