@@ -40,7 +40,7 @@ def hello_pubsub(event, context):
     mes = """
         [info][title]検知: % s[/title]
         発生時刻: % s
-        発生した事項: % s
+        監視項目名: % s
         対象リソース名: % s
         エラー詳細URL: % s[/info]
         """ % (
