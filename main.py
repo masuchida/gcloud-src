@@ -17,7 +17,7 @@ def hello_pubsub(event, context):
     elif incidentFlag == 'closed':
         title = '回復'
 
-    message = """
+    mes = """
         Title: % s
         発生時刻: % s
         発生した事項: % s
@@ -31,4 +31,4 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    print(json.dumps(message).encode('utf-8'))
+    print(mes)
