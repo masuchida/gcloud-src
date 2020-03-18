@@ -46,12 +46,12 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    print(mes)
-
     data = {
         'text': mes
     }
 
-    headers = {'X-ChatWorkToken': TOKEN}
+    headers = {
+        'X-ChatWorkToken': TOKEN
+    }
 
     requests.post(POST, headers=headers, data=data)
