@@ -49,7 +49,7 @@ def hello_pubsub(event, context):
     print(mes)
 
     data = {
-        'text': mes.encode()
+        'text': mes
     }
 
     headers = {'X-ChatWorkToken': TOKEN}
