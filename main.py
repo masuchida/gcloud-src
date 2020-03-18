@@ -46,7 +46,7 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    post_mes = json.dumps(mes.encode('utf-8'))
+    post_mes = json.dumps(mes)
 
     data = {
         'body': post_mes
