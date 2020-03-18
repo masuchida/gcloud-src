@@ -53,5 +53,5 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    send_chatwork(mes.encode('utf-8'))
+    send_chatwork(mes)
     print(mes)
