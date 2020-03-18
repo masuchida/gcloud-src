@@ -33,11 +33,11 @@ def hello_pubsub(event, context):
         incident_flag = '回復'
 
     mes = """
-        検知: % s
+        [info][title]検知: % s[/title]
         発生時刻: % s
         発生した事項: % s
         対象リソース名: % s
-        エラー詳細URL: % s
+        エラー詳細URL: % s[/info]
         """ % (
             incident_flag,
             datetime,
