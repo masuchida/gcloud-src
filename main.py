@@ -17,12 +17,11 @@ def hello_pubsub(event, context):
          context (google.cloud.functions.Context): Metadata for the event.
     """
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
-    print(pubsub_message)
 
     message = pubsub_message['incident']
     incident_flag = message['state']
-    dt = datetime.fromtimestamp(message['started_at'])
-    jst = dt.astimezone(timezone('Asia/Tokyo'))
+    start_date = datetime.fromtimestamp(message['started_at'])
+    end_date = datetime.fromtimestamp((message['end_at']))
     summary = message['summary']
 
     if summary == 'An uptime check on gcp-test-271312 gcp-test is failing.':
@@ -32,8 +31,10 @@ def hello_pubsub(event, context):
 
     if incident_flag == 'open':
         incident_flag = '障害発生'
+        jst = start_date.astimezone(timezone('Asia/Tokyo'))
     elif incident_flag == 'closed':
         incident_flag = '回復'
+        jst = end_date.astimezone(timezone('Asia/Tokyo'))
 
     mes = """
         [info][title]検知: % s[/title]
