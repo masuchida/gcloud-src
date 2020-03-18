@@ -1,6 +1,7 @@
+from datetime import datetime
+from pytz import timezone
 import base64
 import json
-import _datetime
 import requests
 import os
 
@@ -16,10 +17,12 @@ def hello_pubsub(event, context):
          context (google.cloud.functions.Context): Metadata for the event.
     """
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
+    print(pubsub_message)
 
     message = pubsub_message['incident']
     incident_flag = message['state']
-    datetime = _datetime.datetime.fromtimestamp(message['started_at'] + 9)
+    dt = datetime.fromtimestamp(message['started_at'])
+    jst = dt.astimezone(timezone('Asia/Tokyo'))
     summary = message['summary']
 
     if summary == 'An uptime check on gcp-test-271312 gcp-test is failing.':
@@ -40,7 +43,7 @@ def hello_pubsub(event, context):
         エラー詳細URL: % s[/info]
         """ % (
             incident_flag,
-            datetime,
+            jst,
             summary,
             message['resource_display_name'],
             message['url']

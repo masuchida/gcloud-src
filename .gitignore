@@ -1,6 +1,4 @@
 .idea
 readme.md
 __pycache__/
-datetime.py
-.env
-settings.py
+test.py
