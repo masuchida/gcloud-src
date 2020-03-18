@@ -54,4 +54,4 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    print(mes)
+    send_chatwork(json.dumps(mes).encode('utf-8'))
