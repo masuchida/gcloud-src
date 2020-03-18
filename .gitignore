@@ -1,2 +1,4 @@
 .idea
 readme.md
+__pycache__/
+datetime.py
