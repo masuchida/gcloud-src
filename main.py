@@ -22,7 +22,6 @@ def hello_pubsub(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
-    print(event)
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
     message = pubsub_message['incident']
