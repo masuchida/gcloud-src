@@ -10,7 +10,7 @@ steps:
       '--runtime',
       'python37',
       '--region',
-      'us-central1',
+      'asia-northeast1',
       '--entry-point',
       'hello_pubsub',
       '--trigger-topic',
