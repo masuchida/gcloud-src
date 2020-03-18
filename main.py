@@ -54,4 +54,4 @@ def hello_pubsub(event, context):
             message['url']
         )
 
-    send_chatwork(print(mes))
+    print(mes)
