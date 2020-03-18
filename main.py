@@ -21,7 +21,7 @@ def hello_pubsub(event, context):
     message = pubsub_message['incident']
     incident_flag = message['state']
     start_date = datetime.fromtimestamp(message['started_at'])
-    end_date = datetime.fromtimestamp((message['ended_at']))
+    end_date = datetime.fromtimestamp(message['ended_at'])
     summary = message['summary']
 
     if summary == 'An uptime check on gcp-test-271312 gcp-test is failing.':
