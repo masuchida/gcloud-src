@@ -17,8 +17,7 @@ def hello_pubsub(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
-    pubsub_raw_message = base64.b64decode(event['data']).decode('utf-8')
-    pubsub_message = json.loads(pubsub_raw_message)
+    pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
     # この辺の受け取り方を検討したい。
     message = pubsub_message['incident']
@@ -43,15 +42,15 @@ def hello_pubsub(event, context):
         対象リソース名: % s
         エラー詳細URL: % s[/info]
         """ % (
-        incident_flag,
-        jst,
-        summary,
-        message['resource_display_name'],
-        message['url']
+            incident_flag,
+            jst,
+            summary,
+            message['resource_display_name'],
+            message['url']
     )
 
     data = {
-        'body': mes
+            'body': mes
     }
 
     headers = {
