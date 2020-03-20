@@ -17,23 +17,19 @@ def hello_pubsub(event, context):
          context (google.cloud.functions.Context): Metadata for the event.
     """
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
-    print(pubsub_message)
 
     message = pubsub_message['incident']
     incident_flag = message['state']
     summary = message['summary']
 
-    if summary == 'An uptime check on gcp-test-271312 gcp-test is failing.':
-        summary = 'サーバーダウンを検知しました。'
-    elif summary == 'The uptime check for gcp-test-271312 gcp-test has returned to a normal state.':
-        summary = 'サーバー回復を確認しました。'
-
     if incident_flag == 'open':
         incident_flag = '障害発生'
+        summary = 'サーバーダウンを検知しました。'
         start_date = datetime.fromtimestamp(message['started_at'])
         jst = start_date.astimezone(timezone('Asia/Tokyo'))
     elif incident_flag == 'closed':
         incident_flag = '回復'
+        summary = 'サーバー回復を確認しました。'
         end_date = datetime.fromtimestamp(message['ended_at'])
         jst = end_date.astimezone(timezone('Asia/Tokyo'))
 
