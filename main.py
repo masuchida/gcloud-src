@@ -37,11 +37,11 @@ def hello_pubsub(event, context):
         jst = end_date.astimezone(timezone('Asia/Tokyo'))
 
     mes = """
-        [info][title]検知: % s[/title]
-        発生時刻: % s
-        監視項目名: % s
-        対象リソース名: % s
-        エラー詳細URL: % s[/info]
+            [info][title]検知: % s[/title]
+            発生時刻: % s
+            監視項目名: % s
+            対象リソース名: % s
+            エラー詳細URL: % s[/info]
         """ % (
         incident_flag,
         jst,
