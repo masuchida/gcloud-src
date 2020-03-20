@@ -17,21 +17,23 @@ def hello_pubsub(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
-<<<<<<< HEAD
-    pubsub_raw_message = base64.b64decode(event['data']).decode('utf-8')
-    pubsub_message = json.loads(pubsub_raw_message)
-=======
-    pubsub_message = json.loads(
-        base64.b64decode(
-            event['data']).decode('utf-8'))
->>>>>>> a6dd561d596e75d4a8b90ffb1039ed5e93369295
 
-    # この辺の受け取り方を検討したい。
-    message = pubsub_message['incident']
-    incident_flag = message['state']
-    summary = message['summary']
 
-    if incident_flag == 'open':
+<< << << < HEAD
+pubsub_raw_message = base64.b64decode(event['data']).decode('utf-8')
+ pubsub_message = json.loads(pubsub_raw_message)
+== == == =
+pubsub_message = json.loads(
+     base64.b64decode(
+          event['data']).decode('utf-8'))
+>>>>>> > a6dd561d596e75d4a8b90ffb1039ed5e93369295
+
+# この辺の受け取り方を検討したい。
+message = pubsub_message['incident']
+ incident_flag = message['state']
+  summary = message['summary']
+
+   if incident_flag == 'open':
         incident_flag = '障害発生'
         summary = 'サーバーダウンを検知しました。'
         start_date = datetime.fromtimestamp(message['started_at'])
