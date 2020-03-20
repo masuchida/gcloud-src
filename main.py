@@ -56,4 +56,7 @@ def hello_pubsub(event, context):
         'X-ChatWorkToken': TOKEN
     }
 
+    test={'test'}
+    print(test)
+
     requests.post(POST, headers=headers, data=data)
