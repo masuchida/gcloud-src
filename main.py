@@ -43,11 +43,11 @@ def hello_pubsub(event, context):
         対象リソース名: % s
         エラー詳細URL: % s[/info]
         """ % (
-            incident_flag,
-            jst,
-            summary,
-            message['resource_display_name'],
-            message['url']
+        incident_flag,
+        jst,
+        summary,
+        message['resource_display_name'],
+        message['url']
     )
 
     data = {
