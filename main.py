@@ -18,6 +18,7 @@ def hello_pubsub(event, context):
     """
     pubsub_message = json.loads(base64.b64decode(event['data']).decode('utf-8'))
 
+    # この辺の受け取り方を検討したい。
     message = pubsub_message['incident']
     incident_flag = message['state']
     summary = message['summary']
