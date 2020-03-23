@@ -2,13 +2,13 @@ from datetime import datetime
 from pytz import timezone
 import base64
 import json
-import requests
+# import requests
 import os
 
-TOKEN = os.environ.get('CW_TOKEN')
-ROOMID = os.environ.get('CW_ROOMID')
-URL = 'https://api.chatwork.com/v2/rooms'
-POST = '{0}/{1}/messages'.format(URL, ROOMID)
+# TOKEN = os.environ.get('CW_TOKEN')
+# ROOMID = os.environ.get('CW_ROOMID')
+# URL = 'https://api.chatwork.com/v2/rooms'
+# POST = '{0}/{1}/messages'.format(URL, ROOMID)
 
 
 def hello_pubsub(event, context):
@@ -50,12 +50,12 @@ def hello_pubsub(event, context):
         message['url']
     )
 
-    data = {
-        'body': mes
-    }
-
-    headers = {
-        'X-ChatWorkToken': TOKEN
-    }
-
-    requests.post(POST, headers=headers, data=data)
+    # data = {
+    #     'body': mes
+    # }
+    #
+    # headers = {
+    #     'X-ChatWorkToken': TOKEN
+    # }
+    #
+    # requests.post(POST, headers=headers, data=data)
